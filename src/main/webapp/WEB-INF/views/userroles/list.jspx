@@ -3,7 +3,7 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <page:list id="pl_com_verified_UserRole" items="${userroles}" z="Og+/Y27lQ9gZZLhi619YQzCsuck=">
-        <table:table data="${userroles}" id="l_com_verified_UserRole" path="/userroles" z="w/iZQSGixjC/czz+klvs/VSMVUc=">
+        <table:table data="${userroles}" id="l_com_verified_UserRole" typeIdFieldName="roleId" path="/userroles" z="w/iZQSGixjC/czz+klvs/VSMVUc=">
             <table:column id="c_com_verified_UserRole_RoleName" property="roleName" z="/48j5k03EjsrzOW+Gsh3N3hyxIA="/>
         </table:table>
     </page:list>

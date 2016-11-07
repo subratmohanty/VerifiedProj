@@ -67,5 +67,11 @@
     <bean class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" id="entityManagerFactory">
         <property name="persistenceUnitName" value="persistenceUnit"/>
         <property name="dataSource" ref="dataSource"/>
+        <property name="packagesToScan">
+         <array>
+              <value>com.verified</value>
+              <value>com.verified.domain</value>
+         </array>
+     </property> 
     </bean>
 </beans>

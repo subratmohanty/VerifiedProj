@@ -26,9 +26,9 @@ public class ApplicationConversionServiceFactoryBean extends FormattingConversio
         };
     }
 
-	public Converter<Long, UserRole> getIdToUserRoleConverter() {
-        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.verified.UserRole>() {
-            public com.verified.UserRole convert(java.lang.Long id) {
+	public Converter<Integer, UserRole> getIdToUserRoleConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Integer, com.verified.UserRole>() {
+            public com.verified.UserRole convert(java.lang.Integer id) {
                 return UserRole.findUserRole(id);
             }
         };

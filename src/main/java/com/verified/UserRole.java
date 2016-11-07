@@ -3,7 +3,11 @@ import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.verified.domain.UserRole.AbstractUserRole;
+
 import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
@@ -11,19 +15,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Table;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
 @Configurable
 @Entity
-public class UserRole extends BaseEntity {
+@Table(name = "UserRole")
+public class UserRole extends AbstractUserRole {
 
-    /**
-     */
-    @NotNull
-    private String RoleName;
-
-	
 
 	public static final List<String> fieldNames4OrderClauseFilter = java.util.Arrays.asList("RoleName");
 
@@ -47,7 +47,7 @@ public class UserRole extends BaseEntity {
         return entityManager().createQuery(jpaQuery, UserRole.class).getResultList();
     }
 
-	public static UserRole findUserRole(Long id) {
+	public static UserRole findUserRole(Integer id) {
         if (id == null) return null;
         return entityManager().find(UserRole.class, id);
     }
@@ -67,42 +67,4 @@ public class UserRole extends BaseEntity {
         return entityManager().createQuery(jpaQuery, UserRole.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
 
-
-
-	public String getRoleName() {
-        return this.RoleName;
-    }
-
-	public void setRoleName(String RoleName) {
-        this.RoleName = RoleName;
-    }
-
-	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Long id;
-
-	@Version
-    @Column(name = "version")
-    private Integer version;
-
-	public Long getId() {
-        return this.id;
-    }
-
-	public void setId(Long id) {
-        this.id = id;
-    }
-
-	public Integer getVersion() {
-        return this.version;
-    }
-
-	public void setVersion(Integer version) {
-        this.version = version;
-    }
-
-	public String toString() {
-        return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
-    }
 }

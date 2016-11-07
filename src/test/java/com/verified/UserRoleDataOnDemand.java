@@ -37,14 +37,14 @@ public class UserRoleDataOnDemand {
             index = data.size() - 1;
         }
         UserRole obj = data.get(index);
-        Long id = obj.getId();
+        Integer id = obj.getRoleId();
         return UserRole.findUserRole(id);
     }
 
 	public UserRole getRandomUserRole() {
         init();
         UserRole obj = data.get(rnd.nextInt(data.size()));
-        Long id = obj.getId();
+        Integer id = obj.getRoleId();
         return UserRole.findUserRole(id);
     }
 

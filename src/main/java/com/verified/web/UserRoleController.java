@@ -25,7 +25,7 @@ public class UserRoleController {
         }
         uiModel.asMap().clear();
         userRole.persist();
-        return "redirect:/userroles/" + encodeUrlPathSegment(userRole.getId().toString(), httpServletRequest);
+        return "redirect:/userroles/" + encodeUrlPathSegment(userRole.getRoleId().toString(), httpServletRequest);
     }
 
 	@RequestMapping(params = "form", produces = "text/html")
@@ -35,7 +35,7 @@ public class UserRoleController {
     }
 
 	@RequestMapping(value = "/{id}", produces = "text/html")
-    public String show(@PathVariable("id") Long id, Model uiModel) {
+    public String show(@PathVariable("id") Integer id, Model uiModel) {
         uiModel.addAttribute("userrole", UserRole.findUserRole(id));
         uiModel.addAttribute("itemId", id);
         return "userroles/show";
@@ -63,17 +63,17 @@ public class UserRoleController {
         }
         uiModel.asMap().clear();
         userRole.merge();
-        return "redirect:/userroles/" + encodeUrlPathSegment(userRole.getId().toString(), httpServletRequest);
+        return "redirect:/userroles/" + encodeUrlPathSegment(userRole.getRoleId().toString(), httpServletRequest);
     }
 
 	@RequestMapping(value = "/{id}", params = "form", produces = "text/html")
-    public String updateForm(@PathVariable("id") Long id, Model uiModel) {
+    public String updateForm(@PathVariable("id") Integer id, Model uiModel) {
         populateEditForm(uiModel, UserRole.findUserRole(id));
         return "userroles/update";
     }
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "text/html")
-    public String delete(@PathVariable("id") Long id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
+    public String delete(@PathVariable("id") Integer id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
         UserRole userRole = UserRole.findUserRole(id);
         userRole.remove();
         uiModel.asMap().clear();
